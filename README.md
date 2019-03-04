@@ -1,4 +1,6 @@
 # springbootdemo
-springboot demo
-
 一些自己用到的技术的相关demo
+
+启动后输入swagger地址进行访问：http://localhost:8080/swagger-ui.html
+
+##1、单redis服务器访问：singleRedis分支
