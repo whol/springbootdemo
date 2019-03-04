@@ -111,44 +111,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         };
     }
 
-
-//    @Bean
-//    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-//        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
-//        return redisCacheManager;
-//    }
-//
-//
-//    @Bean
-//    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-//        ////解决键、值序列化问题
-//        StringRedisTemplate template = new StringRedisTemplate(factory);
-//        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//        template.setValueSerializer(jackson2JsonRedisSerializer);
-//        template.afterPropertiesSet();
-//        return template;
-//    }
-
-
-
-
-
-    /*
-    spring-data-redis  版本不同，方法也不一样
-    上面是1.5
-    下面是2.0
-    */
-
-    /*@Bean
-    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-        RedisCacheManager redisCacheManager = RedisCacheManager.builder(connectionFactory).build();
-        return redisCacheManager;
-    }*/
-
     /**
      * @Description: 防止redis入库序列化乱码的问题
      * @return     返回类型
