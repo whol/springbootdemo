@@ -7,3 +7,4 @@
 
 ## 2、redis集群服务器访问：redisCluster分支
 
+## 3、redis集群服务器共享session：redisClusterSession分支

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @class_name: RedisDemoController
  * @package: com.wang.springbootdemo.controller
@@ -24,10 +26,11 @@ public class RedisDemoController {
     private RedisUtil redisUtil;
 
     @RequestMapping(value = "/setRedis", method = RequestMethod.POST)
-    public String setRedis(String value) {
+    public String setRedis(String value, HttpServletRequest httpServletRequest) {
         String result;
         try {
             redisUtil.setValue("redis_key", value);
+            httpServletRequest.getSession().setAttribute("my_redis_session", value);
             result = "redis设置成功";
         } catch (Exception e) {
             result = "redis设置失败:" + e.getMessage();
@@ -37,11 +40,13 @@ public class RedisDemoController {
 
 
     @RequestMapping(value = "/getRedis", method = RequestMethod.GET)
-    public String getRedis() {
+    public String getRedis(HttpServletRequest httpServletRequest) {
         String result;
         try {
             String value = (String) redisUtil.getValue("redis_key");
             result = "redis读取成功:" + value;
+            String myRedisSession = (String) httpServletRequest.getSession().getAttribute("my_redis_session");
+            System.out.println(myRedisSession);
         } catch (Exception e) {
             result = "redis读取失败:" + e.getMessage();
         }
