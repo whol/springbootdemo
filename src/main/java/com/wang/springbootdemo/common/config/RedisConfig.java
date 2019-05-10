@@ -12,6 +12,7 @@ import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
@@ -77,6 +78,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         return jedisPoolConfig;
     }
 
+
     @Bean
     public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
@@ -93,6 +95,18 @@ public class RedisConfig extends CachingConfigurerSupport {
         JedisClientConfiguration jedisClientConfiguration = jpcf.build();
 
         return new JedisConnectionFactory(redisStandaloneConfiguration, jedisClientConfiguration);
+    }
+
+    /**
+     * key过期事件订阅需要
+     * @param redisConnectionFactory
+     * @return
+     */
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory redisConnectionFactory) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(redisConnectionFactory);
+        return container;
     }
 
     @Bean
