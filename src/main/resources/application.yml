@@ -8,7 +8,7 @@ spring:
     database: 0
     # Redis服务器集群地址
     cluster:
-      clusterNodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384
+      clusterNodes: 47.98.102.177:6379,47.98.102.177:6380,47.98.102.177:6381,47.98.102.177:6382,47.98.102.177:6383,47.98.102.177:6384
       maxRedirects: 6
       commandTimeout: 5000
     jedis:
@@ -28,3 +28,15 @@ spring:
         numTestsPerEvictionRun: -1
     # 连接超时时间（毫秒）
     timeout: 5000
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+wx:
+  mp:
+    configs:
+      - appId: wxc8038971c83db734
+        secret: f5358c4e37dbafdae9750d82b6dccdd0
+        token: fantasy
+        aesKey: q1Qz7og1fQalTKBgRytqonpguKgBznfZQze9nVzGiGQ
