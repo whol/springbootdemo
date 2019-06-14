@@ -40,3 +40,16 @@ wx:
         secret: f5358c4e37dbafdae9750d82b6dccdd0
         token: fantasy
         aesKey: q1Qz7og1fQalTKBgRytqonpguKgBznfZQze9nVzGiGQ
+
+server:
+  #ssl
+  ssl:
+    key-alias: tomcat
+    #证书密码
+    key-password: 123456
+    #证书，可以存放在resoucrs目录下classpath:tomcat.keystore
+    key-store: classpath:tomcat.keystore
+    #证书加密方式
+    key-store-type: JKS
+  #https访问的端口
+  port: 443
